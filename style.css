@@ -1,0 +1,465 @@
+/* ==========================================
+   1. CONFIGURACIÓN BASE DE PANTALLA
+   ========================================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #050207;
+}
+
+.xat-space-escenario {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 900px;
+    background: radial-gradient(circle at 75% 25%, #250d30 0%, #100516 55%, #050207 100%);
+}
+
+/* ==========================================
+   2. RELÁMPAGOS INTERMITENTES (~14s)
+   ========================================== */
+.capa-relampago {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: #d8cce8;
+    opacity: 0;
+    animation: relampagoTormenta 14s infinite;
+}
+
+@keyframes relampagoTormenta {
+    0%, 91%, 95%, 100% {
+        opacity: 0;
+    }
+    92% {
+        opacity: 0.85;
+    }
+    93% {
+        opacity: 0.15;
+    }
+    94% {
+        opacity: 0.95;
+    }
+}
+
+/* ==========================================
+   3. LUNA DE HALLOWEEN CON ROSTRO MAQUIAVÉLICO
+   ========================================== */
+.luna-halloween {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: 120px;
+    right: 60px;
+    border-radius: 50%;
+    z-index: 2;
+    overflow: hidden;
+    /* Fondo estilo hueso / blanco espectral con degradado de penumbra */
+    background: radial-gradient(circle at 50% 48%, #ffffff 0%, #f4edd4 35%, #d9b87f 65%, #561414 100%);
+    box-shadow: 0 0 55px rgba(255, 140, 20, 0.6),
+                0 0 130px rgba(184, 28, 20, 0.4),
+                inset -14px -14px 40px rgba(8, 2, 6, 0.85);
+    animation: resplandorLuna 4s ease-in-out infinite alternate;
+}
+
+@keyframes resplandorLuna {
+    0% {
+        box-shadow: 0 0 45px rgba(255, 120, 0, 0.45),
+                    0 0 100px rgba(184, 28, 20, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 75px rgba(255, 150, 30, 0.75),
+                    0 0 145px rgba(220, 45, 30, 0.5);
+    }
+}
+
+/* Trazado SVG del rostro maquiavélico */
+.cara-jack-maquiavelica {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.96;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.85));
+}
+
+.rasgo-jack {
+    fill: #080206;
+}
+
+.sombra-ojo {
+    fill: rgba(30, 10, 15, 0.35);
+}
+
+.ceja-maquiavelica {
+    fill: none;
+    stroke: #080206;
+    stroke-width: 4.5;
+    stroke-linecap: round;
+}
+
+.arruga-entrecejo {
+    fill: none;
+    stroke: #080206;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    opacity: 0.75;
+}
+
+.costura-boca {
+    fill: none;
+    stroke: #080206;
+    stroke-width: 4.5;
+    stroke-linecap: round;
+}
+
+.puntada {
+    stroke: #080206;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+}
+
+/* ==========================================
+   4. SILUETA DEL CEMENTERIO
+   ========================================== */
+.cementerio-silueta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, #060207 45%, #020103 100%);
+}
+
+.lapida {
+    position: absolute;
+    bottom: 15px;
+    background: #09030b;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.l1 { width: 34px; height: 50px; left: 12%; transform: rotate(-5deg); }
+.l3 { width: 40px; height: 55px; left: 48%; transform: rotate(4deg); }
+.l5 { width: 32px; height: 46px; left: 84%; transform: rotate(-3deg); }
+
+.cruz {
+    width: 16px;
+    height: 70px;
+    border-radius: 2px;
+}
+.cruz::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -14px;
+    width: 44px;
+    height: 14px;
+    background: #09030b;
+    border-radius: 2px;
+}
+.l2 { left: 28%; transform: rotate(6deg); }
+.l4 { left: 68%; transform: rotate(-7deg); }
+
+/* ==========================================
+   5. NIEBLA ESPECTRAL EN MOVIMIENTO
+   ========================================== */
+.niebla-densa {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 220px;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.niebla-capa1 {
+    background: radial-gradient(ellipse at 50% 80%, rgba(55, 20, 68, 0.55) 0%, rgba(20, 5, 26, 0.7) 45%, transparent 75%);
+    filter: blur(14px);
+    animation: derivaNiebla 20s ease-in-out infinite alternate;
+}
+
+.niebla-capa2 {
+    height: 160px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(160, 90, 180, 0.25) 0%, rgba(18, 4, 24, 0.8) 50%, transparent 80%);
+    filter: blur(20px);
+    animation: derivaNiebla 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes derivaNiebla {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); }
+}
+
+/* ==========================================
+   6. HOJAS QUE SE QUEMAN Y DESPRENDEN HUMO
+   ========================================== */
+.contenedor-hojas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.hoja-contenedor {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    animation: descensoHoja linear infinite;
+}
+
+.c1 { left: 14%; animation-duration: 9.8s;  animation-delay: 0s;   }
+.c2 { left: 32%; animation-duration: 11.5s; animation-delay: 3.2s; }
+.c3 { left: 52%; animation-duration: 10.2s; animation-delay: 6.8s; }
+.c4 { left: 68%; animation-duration: 12.0s; animation-delay: 1.6s; }
+.c5 { left: 84%; animation-duration: 10.0s; animation-delay: 5.0s; }
+.c6 { left: 42%; animation-duration: 10.8s; animation-delay: 8.4s; }
+
+@keyframes descensoHoja {
+    0% {
+        top: -6%;
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(30px);
+    }
+    50% {
+        transform: translateX(-20px);
+    }
+    75% {
+        transform: translateX(35px);
+    }
+    100% {
+        top: 88%;
+        transform: translateX(10px);
+    }
+}
+
+.hoja {
+    position: absolute;
+    width: 22px;
+    height: 16px;
+    border-radius: 75% 15% 75% 15%;
+    transform-origin: center center;
+    animation: combustionHoja linear infinite;
+    animation-duration: inherit;
+    animation-delay: inherit;
+}
+
+.hoja::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.4);
+    transform: rotate(-35deg);
+}
+
+@keyframes combustionHoja {
+    0% {
+        background: linear-gradient(135deg, #be5318 0%, #68260a 100%);
+        box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);
+        filter: blur(0px) brightness(1);
+        transform: scale(1) rotateX(0deg) rotateZ(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+        transform: scale(0.98) rotateX(40deg) rotateZ(35deg);
+    }
+    25% {
+        background: linear-gradient(135deg, #a43e12 0%, #541d08 70%, #1f0802 100%);
+        box-shadow: 0 0 6px rgba(255, 90, 0, 0.4);
+        filter: brightness(1.1);
+        transform: scale(0.95) rotateX(80deg) rotateZ(85deg);
+        opacity: 0.9;
+    }
+    42% {
+        background: radial-gradient(circle at 70% 30%, #ffc400 0%, #ff4d00 35%, #220803 75%);
+        box-shadow: 0 0 14px #ff5500, inset 0 0 8px #ffd000;
+        filter: brightness(1.4) drop-shadow(0 0 6px #ff4000);
+        transform: scale(0.85) rotateX(150deg) rotateZ(140deg);
+        opacity: 0.85;
+    }
+    58% {
+        background: radial-gradient(circle at 50% 50%, #301007 0%, #0e0402 70%, transparent 95%);
+        box-shadow: 0 0 6px rgba(255, 60, 0, 0.5);
+        filter: blur(0.8px) brightness(0.8);
+        transform: scale(0.65) rotateX(230deg) rotateZ(210deg);
+        opacity: 0.65;
+    }
+    75% {
+        background: radial-gradient(circle, #1a0805 20%, transparent 80%);
+        box-shadow: 0 0 3px rgba(255, 50, 0, 0.2);
+        filter: blur(2px) brightness(0.5);
+        transform: scale(0.4) rotateX(310deg) rotateZ(280deg);
+        opacity: 0.35;
+    }
+    90% {
+        box-shadow: none;
+        filter: blur(3.5px) brightness(0.2);
+        transform: scale(0.18) rotateX(380deg) rotateZ(340deg);
+        opacity: 0.1;
+    }
+    100% {
+        box-shadow: none;
+        filter: blur(5px);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.humo-ceniza {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: emanarHumo linear infinite;
+    animation-duration: inherit;
+    animation-delay: inherit;
+}
+
+@keyframes emanarHumo {
+    0%, 35% {
+        opacity: 0;
+        transform: translateY(0) scale(0.3);
+    }
+    45% {
+        opacity: 0.45;
+        background: radial-gradient(circle, rgba(200, 190, 205, 0.7) 0%, rgba(130, 115, 135, 0.3) 50%, transparent 80%);
+        filter: blur(3px);
+        transform: translateY(-8px) scale(1);
+    }
+    65% {
+        opacity: 0.6;
+        background: radial-gradient(circle, rgba(160, 150, 170, 0.6) 0%, rgba(90, 75, 95, 0.25) 55%, transparent 85%);
+        filter: blur(6px);
+        transform: translateY(-22px) translateX(12px) scale(2.4);
+    }
+    85% {
+        opacity: 0.25;
+        filter: blur(9px);
+        transform: translateY(-40px) translateX(24px) scale(3.8);
+    }
+    100% {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(-55px) translateX(32px) scale(4.8);
+    }
+}
+
+/* ==========================================
+   7. TEXTOS AJUSTADOS A LA SALA DE XAT
+   ========================================== */
+.xat-capa-textos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.texto-extasis {
+    position: absolute;
+    top: 36%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-family: 'Pirata One', cursive, serif;
+    font-size: 6.5rem;
+    font-weight: 400;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: rgba(230, 115, 30, 0.45);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    text-shadow: 
+        0 0 12px rgba(255, 80, 0, 0.3),
+        0 0 30px rgba(180, 40, 0, 0.15),
+        2px 4px 6px rgba(0, 0, 0, 0.9);
+    user-select: none;
+}
+
+.texto-feliz-halloween {
+    position: absolute;
+    bottom: 5.5%;
+    left: 36.5%;
+    transform: translate(-50%, 0);
+    margin: 0;
+    font-family: 'MedievalSharp', cursive, serif;
+    font-size: 1.65rem;
+    letter-spacing: 3px;
+    color: #ff9d2b;
+    text-shadow: 
+        0 0 8px rgba(255, 120, 0, 0.7),
+        0 0 18px rgba(220, 40, 0, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.95);
+    user-select: none;
+}
+
+/* ==========================================
+   8. RESPONSIVE (MÓVILES)
+   ========================================== */
+@media (max-width: 768px) {
+    .luna-halloween {
+        width: 110px;
+        height: 110px;
+        right: 30px;
+        top: 80px;
+    }
+
+    .cementerio-silueta {
+        height: 100px;
+    }
+
+    .cruz {
+        height: 55px;
+    }
+
+    .cruz::before {
+        width: 32px;
+        height: 10px;
+        left: -8px;
+        top: 15px;
+    }
+
+    .texto-extasis {
+        font-size: 3.8rem;
+        top: 32%;
+        left: 50%;
+        letter-spacing: 6px;
+    }
+
+    .texto-feliz-halloween {
+        font-size: 1.15rem;
+        bottom: 7%;
+        left: 50%;
+        letter-spacing: 2px;
+    }
+}
